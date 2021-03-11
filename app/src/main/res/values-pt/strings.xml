@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sons de Carros e motores</string>
+    <string name="app_name_mayus">SONS DE CARROS E MOTORES</string>
+    <string name="aviso">" Pressione e segure para bloquear no modo paisagem"</string>
+</resources>

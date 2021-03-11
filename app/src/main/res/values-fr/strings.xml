@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bruits de Voitures</string>
+    <string name="app_name_mayus">BRUITS DE VOITURES</string>
+    <string name="aviso">Appuyez et maintenez pour verrouiller en mode paysage</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">कार लगता है</string>
+    <string name="app_name_mayus">कार लगता है</string>
+    <string name="aviso">लैंडस्केप मोड में लॉक करने के लिए लंबा प्रेस</string>
+</resources>
