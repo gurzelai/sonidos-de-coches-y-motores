@@ -1,4 +1,4 @@
-package com.example.sonidosdecochesymotores;
+package com.sonidosdecochesymotores.sonidosdecochesymotores;
 
 import android.content.Context;
 import android.view.LayoutInflater;

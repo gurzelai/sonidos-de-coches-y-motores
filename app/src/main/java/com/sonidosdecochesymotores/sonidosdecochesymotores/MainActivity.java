@@ -1,4 +1,4 @@
-package com.example.sonidosdecochesymotores;
+package com.sonidosdecochesymotores.sonidosdecochesymotores;
 
 import androidx.appcompat.app.AppCompatActivity;
 
