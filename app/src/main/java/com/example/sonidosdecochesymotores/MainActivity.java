@@ -35,7 +35,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 4;
+    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 5;
     ListView lvCoches;
     List<Coche> listaCoches;
     TextView nombreDeLaApp;
