@@ -1,4 +1,4 @@
-package com.sonidosdecochesymotores.sonidosdecochesymotores;
+package com.gurzelai.sonidosdecochesymotores;
 
 import android.content.Intent;
 import android.os.Bundle;
