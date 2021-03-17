@@ -36,13 +36,6 @@ public class MostrarCoche extends AppCompatActivity {
         anadirBanner();
         imagen = findViewById(R.id.imagenMostrarCoche);
         imagen.setImageResource(coche.getImagen());
-        imagen.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "Funciona", Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
         imagen.setClickable(true);
         imagen.setOnClickListener(view -> pantallaCompleta());
     }
