@@ -35,7 +35,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 5;
+    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 2;
     ListView lvCoches;
     List<Coche> listaCoches;
     TextView nombreDeLaApp;
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cocheSeleccionado(false, position);
+
             }
         });
         lvCoches.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
