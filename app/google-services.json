@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:679720467739:android:c5f2ed955afb8ca89f67be",
+        "mobilesdk_app_id": "1:679720467739:android:7e12e6a7e87a03639f67be",
         "android_client_info": {
-          "package_name": "com.gurzelai.sonidosdecochesymotores"
+          "package_name": "com.sonidosdecochesymotores.sonidosdecochesymotores"
         }
       },
       "oauth_client": [

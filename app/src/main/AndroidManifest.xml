@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gurzelai.sonidosdecochesymotores">
+    package="com.sonidosdecochesymotores.sonidosdecochesymotores">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -14,13 +14,13 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3237439786100647~6849396453" />
 
-        <activity android:name="com.gurzelai.sonidosdecochesymotores.MainActivity"/>
+        <activity android:name="com.sonidosdecochesymotores.sonidosdecochesymotores.MainActivity"/>
         <activity
-            android:name="com.gurzelai.sonidosdecochesymotores.MostrarCoche"
+            android:name="com.sonidosdecochesymotores.sonidosdecochesymotores.MostrarCoche"
             android:hardwareAccelerated="true"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity
-            android:name="com.gurzelai.sonidosdecochesymotores.SplashActivity"
+            android:name="com.sonidosdecochesymotores.sonidosdecochesymotores.SplashActivity"
             android:theme="@style/Theme.SonidosDeCochesYMotores.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
