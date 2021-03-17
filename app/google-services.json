@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "679720467739",
+    "project_id": "sonidos-de-coches-y-motores",
+    "storage_bucket": "sonidos-de-coches-y-motores.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679720467739:android:c5f2ed955afb8ca89f67be",
+        "android_client_info": {
+          "package_name": "com.gurzelai.sonidosdecochesymotores"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679720467739-i9qhe946th8m97bfjoiu12fqamm5ckh0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3POb0T4BauZg6KlE4axsy3D3cn3_XDfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679720467739-i9qhe946th8m97bfjoiu12fqamm5ckh0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
