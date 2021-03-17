@@ -15,6 +15,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MostrarCoche extends AppCompatActivity {
 
@@ -28,10 +29,11 @@ public class MostrarCoche extends AppCompatActivity {
         setContentView(R.layout.activity_mostrar_coche);
         coche = (Coche) getIntent().getExtras().getSerializable("coche");
         boolean bloqueo = getIntent().getBooleanExtra("bloqueo", false);
-        if(bloqueo) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        if (bloqueo) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         pantallaCompleta();
+        anadirAnalytics();
         sonido();
-        añadirBanner();
+        anadirBanner();
         imagen = findViewById(R.id.imagenMostrarCoche);
         imagen.setImageResource(coche.getImagen());
         imagen.setOnLongClickListener(new View.OnLongClickListener() {
@@ -45,6 +47,13 @@ public class MostrarCoche extends AppCompatActivity {
         imagen.setOnClickListener(view -> pantallaCompleta());
     }
 
+    private void anadirAnalytics() {
+        FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("Nombre_del_coche", coche.getNombre());
+        firebaseAnalytics.logEvent("Mostrar_coche", bundle);
+    }
+
     private void sonido() {
         String nombre = coche.getNombre().toLowerCase().replaceAll(" ", "")
                 .toLowerCase().replace("-", "").replace("_", "").replace("(", "").replace(")", "");
@@ -54,7 +63,7 @@ public class MostrarCoche extends AppCompatActivity {
         mp.start();
     }
 
-    private void añadirBanner() {
+    private void anadirBanner() {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {

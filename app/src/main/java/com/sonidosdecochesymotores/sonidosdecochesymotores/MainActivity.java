@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), getString(R.string.aviso), Toast.LENGTH_LONG).show();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         pantallaCompleta();
-        añadirBanner();
+        anadirBanner();
         inicializar();
         lvCoches = (ListView) findViewById(R.id.lvCoches);
         lvCoches.setAdapter(new AdaptadorCoche(getApplicationContext(), R.layout.activity_adaptador_coche, (ArrayList<Coche>) listaCoches));
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    private void añadirBanner() {
+    private void anadirBanner() {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
