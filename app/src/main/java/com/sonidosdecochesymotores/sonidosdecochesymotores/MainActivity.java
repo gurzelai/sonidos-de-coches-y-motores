@@ -1,5 +1,6 @@
 package com.sonidosdecochesymotores.sonidosdecochesymotores;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,10 +21,13 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -35,12 +40,13 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 2;
+    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 5;
     ListView lvCoches;
     List<Coche> listaCoches;
     TextView nombreDeLaApp;
     int contadorDeAnunciosVistos = 0;
-    private InterstitialAd interstitialAd;
+    private InterstitialAd minterstitialAd;
+
     Intent intent;
 
     @Override
@@ -77,19 +83,19 @@ public class MainActivity extends AppCompatActivity {
         nombreDeLaApp.setText(wordtoSpan);
     }
 
-    public void cocheSeleccionado(boolean bloqueo, int position){
+    public void cocheSeleccionado(boolean bloqueo, int position) {
         intent = new Intent(getApplicationContext(), MostrarCoche.class);
         Coche coche = listaCoches.get(position);
         intent.putExtra("coche", coche);
-        if(bloqueo) intent.putExtra("bloqueo", true);
+        if (bloqueo) intent.putExtra("bloqueo", true);
         if ((contadorDeAnunciosVistos == NUMERO_DE_COCHES_PARA_EL_ANUNCIO)) {
             contadorDeAnunciosVistos = 0;
             anuncio();
-        } else {
-            contadorDeAnunciosVistos++;
-            startActivity(intent);
         }
+        contadorDeAnunciosVistos++;
+        startActivity(intent);
     }
+
     private void anadirBanner() {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -107,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 pantallaCompleta();
             }
         });
+
+
     }
 
     private void pantallaCompleta() {
@@ -123,15 +131,15 @@ public class MainActivity extends AppCompatActivity {
         Coche c = null;
         List<String> nombresEnOtroIdioma = null;
         int contador = 0;
-        if(Locale.getDefault().getLanguage().equals("zh") || Locale.getDefault().getLanguage().equals("hi")){
+        if (Locale.getDefault().getLanguage().equals("zh") || Locale.getDefault().getLanguage().equals("hi")) {
             InputStream isOtroIdioma = null;
             try {
-                isOtroIdioma = am.open("nombres"+Locale.getDefault().getLanguage()+".txt");
+                isOtroIdioma = am.open("nombres" + Locale.getDefault().getLanguage() + ".txt");
                 nombresEnOtroIdioma = new ArrayList<>();
                 InputStreamReader osw = new InputStreamReader(isOtroIdioma);
                 BufferedReader br = new BufferedReader(osw);
                 while (br.ready()) {
-                   nombresEnOtroIdioma.add(br.readLine());
+                    nombresEnOtroIdioma.add(br.readLine());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -143,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader br = new BufferedReader(osw);
             while (br.ready()) {
                 listaCoches.add(c = new Coche(br.readLine()));
-                if(nombresEnOtroIdioma!=null){
+                if (nombresEnOtroIdioma != null) {
                     c.setNombreEnOtroIdioma(nombresEnOtroIdioma.get(contador++));
                 }
                 String nombre = c.getNombre().toLowerCase().replaceAll(" ", "")
@@ -163,30 +171,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void anuncio() {
-        interstitialAd = new InterstitialAd(getApplicationContext());
-        interstitialAd.setAdUnitId("ca-app-pub-3237439786100647/2312730540");
-        interstitialAd.setAdListener(new AdListener() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onAdLoaded() {
-                mostrarInterstitialAd();
-            }
-
-            @Override
-            public void onAdClosed() {
-                startActivity(intent);
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                AdRequest adRequest = new AdRequest.Builder().build();
+                com.google.android.gms.ads.interstitial.InterstitialAd.load(MainActivity.this, "ca-app-pub-3237439786100647/2312730540", adRequest, new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        minterstitialAd = interstitialAd;
+                        minterstitialAd.show(MainActivity.this);
+                    }
+                });
             }
         });
-        cargarInterstitialAd();
-    }
-
-    private void cargarInterstitialAd() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        interstitialAd.loadAd(adRequest);
-    }
-
-    private void mostrarInterstitialAd() {
-        if (interstitialAd.isLoaded()) {
-            interstitialAd.show();
-        }
     }
 }

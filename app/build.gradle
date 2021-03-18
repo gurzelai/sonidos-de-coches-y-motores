@@ -14,6 +14,7 @@ android {
         targetSdkVersion 30
         versionCode 2
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,7 +39,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation platform('com.google.firebase:firebase-bom:26.7.0')
-    implementation 'com.google.android.gms:play-services-ads:19.4.0' //admob
+    implementation 'com.google.android.gms:play-services-ads:19.7.0' //admob
     implementation 'com.google.firebase:firebase-analytics' //analytics
     implementation 'com.google.firebase:firebase-crashlytics' //crashlytics
+    implementation "androidx.multidex:multidex:2.0.1"
+
 }

@@ -1,5 +1,6 @@
 package com.sonidosdecochesymotores.sonidosdecochesymotores;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,19 +31,22 @@ public class AdaptadorCoche extends BaseAdapter {
     public long getItemId(int id) {
         return id;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        View v = convertView;
-        LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        v = layoutInflater.inflate(R.layout.activity_adaptador_coche, null);
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).
+                    inflate(R.layout.activity_adaptador_coche, viewGroup, false);
+        }
         String nombre = coches.get(position).getNombre();
-        ImageView imagenview = (ImageView) v.findViewById(R.id.foto);
+        ImageView imagenview = (ImageView) convertView.findViewById(R.id.foto);
         imagenview.setImageResource(coches.get(position).getImagen());
-        TextView tvNombre = (TextView) v.findViewById(R.id.nombre);
+        TextView tvNombre = (TextView) convertView.findViewById(R.id.nombre);
         if(coches.get(position).getNombreEnOtroIdioma()!=null){
             tvNombre.setText(coches.get(position).getNombreEnOtroIdioma());
         }
         else tvNombre.setText(nombre);
-        return v;
+        return convertView;
     }
 }
